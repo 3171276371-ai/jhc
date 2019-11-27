@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jhc开发者平台</title>
+
+    <!-- CSS -->
+
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" th:href="@{bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css"
+          th:href="@{font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" href="assets/css/form-elements.css" th:href="@{css/form-elements.css}">
+    <link rel="stylesheet" href="assets/css/style.css" th:href="@{css/style.css}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicon and touch icons -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" th:src="@{js/jquery-3.3.1.js}"></script>
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png"
+          th:href="@{ico/apple-touch-icon-144-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png"
+          th:href="@{ico/apple-touch-icon-114-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png"
+          th:href="@{ico/apple-touch-icon-72-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png"
+          th:href="@{ico/apple-touch-icon-57-precomposed.png}">
+
+</head>
+
+<body>
+
+<!-- Top content -->
+<div class="top-content">
+
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1><strong>Jhc开发者平台</strong> 注册表单</h1>
+                    <div class="description">
+                        <p>
+                            最大的挑战和突破在于用人，而用人最大的突破在于信任人 <strong>努力</strong>， 创造我们的价值!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 form-box">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>register to our site</h3>
+                            <p> register in:</p>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-key"></i>
+                        </div>
+                    </div>
+                    <div class="form-bottom">
+                        <form role="form" action="" method="post" class="login-form" id="form" th:action="@{register}">
+                            <div class="form-group">
+                                <label class="sr-only" for="form-name">姓名</label>
+                                <input type="text" name="name" placeholder="请输入姓名..." class="form-username form-control"
+                                       id="form-name">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-username">用户名</label>
+                                <input type="text" name="username" placeholder="请输入8-10位用户名..."
+                                       class="form-password form-control" id="form-username">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-email">邮箱</label>
+                                <input type="email" name="email" placeholder="请输入邮箱..."
+                                       class="form-username form-control" id="form-email">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-tel">手机号</label>
+                                <input type="tel" name="phone" placeholder="请输入正确的电话号码..."
+                                       class="form-password form-control" id="form-tel">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-password">密码</label>
+                                <input type="password" name="password" placeholder="请输入8-10位的密码..."
+                                       class="form-password form-control" id="form-password">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-email">邮箱验证码：</label>
+                                <input type="text" name="checkCode" placeholder="请输入正确的邮箱验证码..."
+                                       class="form-password form-control" id="checkCode" >
+                                <button id="sendCheckCode" type="button"  class="btn btn-primary btn-sm">获取验证码</button>
+                            </div>
+                            <button type="button" class="btn" id="btn1" onclick="formCheck()">注册!</button>
+                            <p style="color: red;text-align: center" th:text="${error}"
+                               th:if="${not #strings.isEmpty(error)}"></p>
+                            <a href="login.html">已有帐号，登录</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 social-login">
+                    <h3>...登录其他方式:</h3>
+                    <div class="social-login-buttons">
+                        <a class="btn btn-link-1 btn-link-1-facebook" href="#">
+                            <i class="fa fa-facebook"></i> QQ登录
+                        </a>
+                        <a class="btn btn-link-1 btn-link-1-twitter" href="#">
+                            <i class="fa fa-twitter"></i> 微信登录
+                        </a>
+                        <a class="btn btn-link-1 btn-link-1-google-plus" href="#">
+                            <i class="fa fa-google-plus"></i> 手机登录
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Javascript -->
+<script src="assets/js/jquery-1.11.1.min.js" th:src="@{js/jquery-1.11.1.min.js}"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js" th:src="@{bootstrap/js/bootstrap.min.js}"></script>
+<script src="assets/js/jquery.backstretch.min.js" th:src="@{js/jquery.backstretch.min.js}"></script>
+<script src="assets/js/scripts.js" th:src="@{js/scripts.js}"></script>
+
+<!--[if lt IE 10]>
+<script src="assets/js/placeholder.js" th:src="@{js/placeholder.js}"></script>
+<![endif]-->
+
+<script>
+
+
+    var checkCode = "";
+
+    $("#sendCheckCode").click(function () {
+        var email = $("#form-email").val();
+        if (email == null || email == ""){
+            alert("请输入邮箱！！！");
+            return;
+        }
+
+        $.ajax({
+            url:"/getCheckCode?email="+email,
+            type:"post",
+            success:function (text) {
+                if (text != null && text != ""){
+                    alert("已发送");
+                    checkCode = text;
+                    countDown();
+                } else{
+                    alert("获取失败，请重新获取")
+                }
+            }
+        });
+    });
+
+    var maxTime = 60;
+    function countDown(){
+        if (maxTime == 0){
+            checkCode = "";
+            $("#sendCheckCode").removeAttr("disabled")
+            $("#sendCheckCode").html("获取验证码");
+            maxTime = 60;
+        }else{
+            $("#sendCheckCode").attr("disabled","disabled");
+            $("#sendCheckCode").html(maxTime+"秒后重新获取");
+            maxTime--;
+            setTimeout(countDown,1000);
+        }
+    }
+
+
+    function checkemail() {
+        var email = $("#form-email").val();
+        var email_charge = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+        var flag = email_charge.test(email);
+        if (flag) {
+            $("#form-email").css("border", "2px solid green");
+        } else {
+            $("#form-email").css("border", "2px solid red");
+        }
+        return flag;
+    }
+
+    function checkname() {
+        var name = $("#form-name").val();
+        var name_charge = /[\u4E00-\u9FA5]/;
+        var flag = name_charge.test(name);
+        if (flag) {
+            $("#form-name").css("border", "2px solid green");
+        } else {
+            $("#form-name").css("border", "2px solid red");
+
+        }
+        return flag;
+    }
+
+    function checkphone() {
+        var telephone = $("#form-tel").val();
+        var phone_charge = /^1[34578]\d{9}$/;
+        var flag = phone_charge.test(telephone);
+        if (flag) {
+            $("#form-tel").css("border", "2px solid green");
+        } else {
+            $("#form-tel").css("border", "2px solid red");
+
+        }
+        return flag;
+    }
+
+    function checkusername() {
+        var username = $("#form-username").val();
+        var username_charge = /^\w{8,20}$/;
+        var flag = username_charge.test(username);
+        if (flag) {
+            $("#form-username").css("border", "2px solid green");
+        } else {
+            $("#form-username").css("border", "2px solid red");
+
+
+        }
+        return flag;
+    }
+
+    function checkpassword() {
+        var password = $("#form-password").val();
+        var password_charge = /^\w{8,20}$/;
+        var flag = password_charge.test(password);
+        if (flag) {
+            $("#form-password").css("border", "2px solid green");
+
+        } else {
+            $("#form-password").css("border", "2px solid red");
+
+        }
+        return flag;
+    }
+
+    $(function () {
+        $("#form-username").blur(checkusername);
+        $("#form-password").blur(checkpassword);
+        $("#form-email").blur(checkemail);
+        $("#form-name").blur(checkname);
+        $("#form-tel").blur(checkphone);
+
+
+    });
+
+    function formCheck() {
+        if (checkphone() && checkemail() && checkname() && checkpassword() && checkusername()) {
+            document.getElementById("form").submit();
+        } else {
+            alert("不符合要求重新输入");
+            location.href = "register.html";
+        }
+    }
+
+
+</script>
+</body>
+
+</html>
